@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Major{% endblock %}
+
+{% block body %}
+    <h1>Major</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ major.id }}</td>
+            </tr>
+            <tr>
+                <th>MajorName</th>
+                <td>{{ major.MajorName }}</td>
+            </tr>
+            <tr>
+                <th>MajorInfo</th>
+                <td>{{ major.MajorInfo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_major_index') }}">back to list</a>
+
+    <a href="{{ path('app_major_edit', {'id': major.id}) }}">edit</a>
+
+    {{ include('major/_delete_form.html.twig') }}
+{% endblock %}
