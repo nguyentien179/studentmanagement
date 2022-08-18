@@ -2,14 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\CourseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Student;
+use App\Entity\Subject;
+use App\Entity\Semester;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CourseRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CourseRepository::class)]
 class Course
-{
+{   
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -30,6 +33,9 @@ class Course
     #[ORM\ManyToMany(targetEntity: Subject::class, inversedBy: 'courses')]
     private $SubjectName;
 
+    public function __toString() {
+        return $this->CourseName;
+    }
     public function __construct()
     {
         $this->CourseID = new ArrayCollection();

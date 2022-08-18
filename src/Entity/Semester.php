@@ -21,6 +21,15 @@ class Semester
     #[ORM\OneToMany(mappedBy: 'CourseName', targetEntity: Course::class)]
     private $CourseName;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="courseName", type="string", length=255, nullable=false)
+     */
+    private $nombre;
+    public function __toString() {
+        return $this->SemesterName;
+    }
     public function __construct()
     {
         $this->CourseName = new ArrayCollection();

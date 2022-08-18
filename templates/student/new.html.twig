@@ -1,11 +1,17 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New Student{% endblock %}
+{# format giao diện form tự động bằng bootstrap #}
+{% form_theme studentForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Create new Student</h1>
+<div class="container col-md-8 text-center mt-3">
+   <div class="card p-3 bg-light">
+      <h3 class="alert alert-primary">Add Student</h3>
+      {{ form_start(studentForm) }}
+         
+      {{ form_widget(studentForm)}}
+      <input class="btn btn-outline-danger" type="submit" value="Add">
 
-    {{ include('student/_form.html.twig') }}
-
-    <a href="{{ path('app_student_index') }}">back to list</a>
+      {{ form_end(studentForm) }}
+   </div>
+</div>
 {% endblock %}

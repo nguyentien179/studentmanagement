@@ -27,18 +27,19 @@ class CourseController extends AbstractController
         $course = new Course();
         $form = $this->createForm(CourseType::class, $course);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $courseRepository->add($course);
-            return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('course/new.html.twig', [
-            'course' => $course,
-            'form' => $form,
-        ]);
+            $manager = $this->getDoctrine()->getManager();
+        $manager->persist($course);
+        $manager->flush();
+        $this->addFlash('Info','Add course successfully !');
+        return $this->redirectToRoute('app_course_index');
     }
-
+    return $this->renderForm('course/new.html.twig',
+    [
+        'courseForm' => $form
+    ]);
+}
     #[Route('/{id}', name: 'app_course_show', methods: ['GET'])]
     public function show(Course $course): Response
     {

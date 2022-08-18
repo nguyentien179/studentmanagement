@@ -1,11 +1,17 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New Course{% endblock %}
+{# format giao diện form tự động bằng bootstrap #}
+{% form_theme courseForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Create new Course</h1>
+<div class="container col-md-8 text-center mt-3">
+   <div class="card p-3 bg-light">
+      <h3 class="alert alert-primary">Add book</h3>
+      {{ form_start(courseForm) }}
+         
+      {{ form_widget(courseForm)}}
+      <input class="btn btn-outline-danger" type="submit" value="Add">
 
-    {{ include('course/_form.html.twig') }}
-
-    <a href="{{ path('app_course_index') }}">back to list</a>
+      {{ form_end(courseForm) }}
+   </div>
+</div>
 {% endblock %}

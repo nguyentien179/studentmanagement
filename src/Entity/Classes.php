@@ -21,6 +21,10 @@ class Classes
     #[ORM\OneToMany(mappedBy: 'ClassID', targetEntity: Student::class)]
     private $ClassID;
 
+    public function __toString() {
+        return $this->ClassName;
+    }
+    
     public function __construct()
     {
         $this->ClassID = new ArrayCollection();

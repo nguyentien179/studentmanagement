@@ -27,6 +27,10 @@ class Major
     #[ORM\OneToMany(mappedBy: 'SubjectID', targetEntity: Subject::class)]
     private $SubjectID;
 
+    public function __toString() {
+        return $this->MajorName;
+    }
+    
     public function __construct()
     {
         $this->MajorID = new ArrayCollection();

@@ -35,7 +35,7 @@ class StudentController extends AbstractController
         ]);
   }
 
-  #[Route('/detail/{id}', name: 'student_detail')]
+  #[Route('/detail/{id}', name: 'app_student_detail')]
   public function studentDetail ($id, StudentRepository $studentRepository) {
     $student = $studentRepository->find($id);
     if ($student == null) {
@@ -61,7 +61,7 @@ class StudentController extends AbstractController
 
         return $this->renderForm('student/new.html.twig', [
             'student' => $student,
-            'form' => $form,
+            'studentForm' => $form,
         ]);
     }
 
@@ -101,7 +101,7 @@ class StudentController extends AbstractController
     }
     #[IsGranted('ROLE_USER')]
     #[Route('/search', name: 'search_student')]
-  public function searchStudent(BookRepository $bookRepository, Request $request) {
+    public function searchStudent(StudentRepository $studentRepository, Request $request) {
     $students = $studentRepository->searchStudent($request->get('keyword'));
     if ($students == null) {
       $this->addFlash("Warning", "No student found !");
@@ -112,5 +112,19 @@ class StudentController extends AbstractController
     [
         'students' => $students,
     ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 }

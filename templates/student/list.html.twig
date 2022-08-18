@@ -26,8 +26,6 @@
 		{% if students | length == 0 %}
 			<h1 class="text text-danger mt-4 mb-4">No student found !</h1>
 		{% else %}
-			<p class="text-info h3 mt-3">Found : {{ students | length }} student
-             </p>
 			<div class="card-group">
 				<div class="row">
 					{% for student in students %}
@@ -38,10 +36,11 @@
 								{% endif %}
 								<div class="card">
 									<a href="{{ path('app_student_detail', {'id' : student.id })}}">
-									</a>
 									<h3 class="text text-success">
 										{{ student.Name }}
 									</h3>
+									 </a>
+									
 								</div>
 							</div>
 						{% endfor %}
